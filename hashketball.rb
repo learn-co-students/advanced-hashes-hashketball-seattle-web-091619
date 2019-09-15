@@ -1,3 +1,5 @@
+require "pry"
+
 def game_hash
   hash = {
     :home => {
@@ -38,7 +40,7 @@ def game_hash
           :number => 1,
           :shoe => 19,
           :points => 26,
-          :rebounds => 12,
+          :rebounds => 11,
           :assists => 6,
           :steals => 3,
           :blocks => 8,
@@ -70,13 +72,13 @@ def game_hash
           :blocks => 7,
           :slam_dunks => 2
         },
-        "Bismak Biyombo" => {
+        "Bismack Biyombo" => {
           :number => 0,
           :shoe => 16,
           :points => 12,
           :rebounds => 4,
           :assists => 7,
-          :steals => 7,
+          :steals => 22,
           :blocks => 15,
           :slam_dunks => 10
         },
@@ -100,29 +102,50 @@ def game_hash
           :blocks => 1,
           :slam_dunks => 0
         },
-        "Brendan Haywood" => {
+        "Kemba Walker" => {
           :number => 33,
           :shoe => 15,
           :points => 6,
           :rebounds => 12,
           :assists => 12,
-          :steals => 22,
+          :steals => 7,
           :blocks => 5,
           :slam_dunks => 12
         }
       }
     }
   }
+  #p hash[:away][:players]["Bismak Biyombo"][:points]
 end
   
 def num_points_scored(name)
-   game_hash.each do |location, team_data|
-      team_data[:players].each do |player_name, data|
-         if player_name == name #check the name to match
-            return data[:points]
+  #p name
+  hash = game_hash
+  array = []
+   hash.each do |location, attributes|
+      attributes[:players].each do |attribute, info|
+         if attribute == name
+            array << info[:points]
          end
       end
    end
+   score = array[-1]
+   return score
+end
+
+def shoe_size(name)
+  #p name
+  hash = game_hash
+  array = []
+   hash.each do |location, attributes|
+      attributes[:players].each do |attribute, info|
+         if attribute == name
+            array << info[:shoe]
+         end
+      end
+   end
+   score = array[-1]
+   return score
 end
 
 def team_names
